@@ -25,7 +25,8 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomer());
     }
 
-    @GetMapping ResponseEntity<Customer> getCustomer(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> getCustomer(@PathVariable int id) {
         return ResponseEntity.ok(customerService.getCustomer(id));
     }
 }
