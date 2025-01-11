@@ -21,7 +21,18 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book getBook(int id) {
+    public int getQuantity(int id) {
+        Book b = bookRepository.findById(id).get();
+        return b.getStock();
+    }
+
+    public void setQuantity(int id, int quantity) {
+        Book b = bookRepository.findById(id).get();
+        b.setStock(b.getStock()-quantity);
+        bookRepository.save(b);
+    }
+
+    public Object getBook(int id) {
         return bookRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("book does not exist"));
     }

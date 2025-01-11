@@ -30,6 +30,17 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBook(id));
     }
 
+    @GetMapping("/quantity/{id}")
+    public ResponseEntity<Integer> getQuantity(@PathVariable int id) {
+        return ResponseEntity.ok(bookService.getQuantity(id));
+    }
+
+    @GetMapping("setQuantity/{id}/{quantity}")
+    public ResponseEntity<Object> setQuantity(@PathVariable int id, @PathVariable int quantity) {
+        bookService.setQuantity(id,quantity);
+        return ResponseEntity.ok(new Book());
+    }
+
     @PutMapping
     public ResponseEntity<Book> updateBook(@RequestBody Book book) {
         return ResponseEntity.ok(bookService.updateBook(book));
